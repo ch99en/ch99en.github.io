@@ -54,22 +54,22 @@ $(document).ready(function () {
   var sidebarToggleLine1st = new SidebarToggleLine({
     el: '.sidebar-toggle-line-first',
     status: {
-      arrow: {width: '50%', rotateZ: '-45deg', top: '2px'},
-      close: {width: '100%', rotateZ: '-45deg', top: '5px'}
+      arrow: {width: '60%', rotateZ: '45deg', top: '2px', left: '50%'},
+      close: {width: '50%', rotateZ: '-45deg', top: '2px', left: '0px'}
     }
   });
   var sidebarToggleLine2nd = new SidebarToggleLine({
     el: '.sidebar-toggle-line-middle',
     status: {
       arrow: {width: '90%'},
-      close: {opacity: 0}
+      close: {width: '90%'}
     }
   });
   var sidebarToggleLine3rd = new SidebarToggleLine({
     el: '.sidebar-toggle-line-last',
     status: {
-      arrow: {width: '50%', rotateZ: '45deg', top: '-2px'},
-      close: {width: '100%', rotateZ: '45deg', top: '-5px'}
+      arrow: {width: '60%', rotateZ: '-45deg', top: '-2px', left: '50%'},
+      close: {width: '50%', rotateZ: '45deg', top: '-2px', left: '0px'}
     }
   });
 
@@ -98,7 +98,7 @@ $(document).ready(function () {
       $(document)
         .on('sidebar.isShowing', function () {
           NexT.utils.isDesktop() && $('body').velocity('stop').velocity(
-            {paddingRight: SIDEBAR_WIDTH},
+            {paddingLeft: SIDEBAR_WIDTH},
             SIDEBAR_DISPLAY_DURATION
           );
         })
@@ -164,7 +164,7 @@ $(document).ready(function () {
       this.sidebarEl.trigger('sidebar.isShowing');
     },
     hideSidebar: function () {
-      NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingRight: 0});
+      NexT.utils.isDesktop() && $('body').velocity('stop').velocity({paddingLeft: 0});
       this.sidebarEl.find('.motion-element').velocity('stop').css('display', 'none');
       this.sidebarEl.velocity('stop').velocity({width: 0}, {display: 'none'});
 
@@ -214,7 +214,7 @@ $(document).ready(function () {
       $brand.size() > 0 && sequence.push({
         e: $brand,
         p: {opacity: 1},
-        o: {duration: 200}
+        o: {duration: 100}
       });
 
       NexT.utils.isMist() && hasElement([$logoLineTop, $logoLineBottom]) &&
@@ -226,13 +226,13 @@ $(document).ready(function () {
       hasElement($title) && sequence.push({
         e: $title,
         p: {opacity: 1, top: 0},
-        o: { duration: 200 }
+        o: {duration: 100}
       });
 
       hasElement($subtitle) && sequence.push({
         e: $subtitle,
         p: {opacity: 1, top: 0},
-        o: {duration: 200}
+        o: {duration: 100}
       });
 
       if (CONFIG.motion.async) {
@@ -254,7 +254,7 @@ $(document).ready(function () {
           e: $(element),
           p: {translateX: translateX},
           o: {
-            duration: 500,
+            duration: 100,
             sequenceQueue: false
           }
         };
@@ -281,7 +281,7 @@ $(document).ready(function () {
 
       $('.menu-item').velocity('transition.slideDownIn', {
         display: null,
-        duration: 200,
+        duration: 100,
         complete: function () {
           integrator.next();
         }
